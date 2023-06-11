@@ -16,7 +16,7 @@ app.use('/vista', require('./router'));
 app.use('/nuevousuario', require('./router'));
 
 app.listen(3000, ()=>{
-    console.log("servidor escuchando por el puerto 3000")
+    console.log("servidor escuchando por el puerto 30001")
   
 });
 module.exports=app
