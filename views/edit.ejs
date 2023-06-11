@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">  
+    <link href="/bootstrap.css" type="text/css" rel="stylesheet">
+    <title>CRUD</title>
+</head>
+<body>
+    <h1>EDITAR PRODUTO : <small class="text-muted"> <%= user.lote+' '+user.pieza %> </small></h1>
+
+      <% if (user) { %>
+      <div class="container mt-4">          
+          <div class="card border-secondary">  
+                <div class="card-header">Editar Registro</div>
+                <div class="card-body">
+                    <form action="/update" method="POST">
+                         <input  type="number" name="id1" value="<%= user.id %>" hidden>
+                        <div class="mb-3">
+                          <label for="user" class="form-label">LOTE</label>
+                          <input type="text" class="form-control" name="lote1" tabindex="1" value="<%= user.referencia  %>">                        
+                        </div>   
+                        <div class="mb-3">
+                          <label for="user" class="form-label">REFERENCIA</label>
+                          <input type="text" class="form-control" id="referen" name="referen" tabindex="1" value="<%= user.referencia  %>">                        
+                        </div>   
+                        <div class="mb-3">
+                          <label for="user" class="form-label">NOMBRE DE LA PIEZA</label>
+                          <input type="text" class="form-control" name="pieza" tabindex="1" value="<%= user.pieza%>">                        
+                        </div>   
+                        <div class="mb-3">
+                          <label for="user" class="form-label">MODELO</label>
+                          <input type="text" class="form-control" id="modelo" name="modelo" tabindex="1" value="<%= user.modelo  %>">                        
+                        </div>   
+                        <div class="mb-3">
+                          <label for="user" class="form-label">RESPONSABLE</label>
+                          <input type="text" class="form-control" id="responsable" name="responsable" tabindex="1" value="<%= user.responsable_desem%>">                        
+                        </div>   
+                        <div class="mb-3">
+                          <label for="user" class="form-label">CANTIDAD ENTREGADA</label>
+                          <input type="text" class="form-control" id="cantidad" name="cantidad" tabindex="1" value="<%= user.cantidad_entre_desem  %>">                        
+                        </div>   
+                        <div class="mb-3">
+                          <label for="user" class="form-label">COMENTARIO</label>
+                          <input type="text" class="form-control" id="comentarios" name="comentarios" tabindex="1" value="<%= user.comentarios %>">                        
+                        </div>   
+                        <div class="mb-3">
+                        </div>                                                              
+                        <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                        <a href="javascript:history.go(-2)" class="btn btn-secondary">Cancelar</a>
+                    </form>      
+                </div>
+            </div>     
+      </div>
+      <% } %>
+</body>
+</html>

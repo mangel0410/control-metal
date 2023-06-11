@@ -1,0 +1,35 @@
+th.fila{
+    border:black 1px solid;
+}
+.ejemplo{
+    margin-top: 250px;
+    margin-left:  400px;
+    color: rgb(28, 3, 252);
+    text-align: center;
+    width:40%;
+    background: rgb(234, 235, 236);
+}
+.texto{
+    color: black;
+}
+.tabla1{
+    border: #000000 2px solid;
+    
+}
+td{
+    border: black 1px solid;
+    border-left: black 1px solid;
+    color: rgb(10, 10, 10);
+}
+.ejem{
+     border-left: black 1px solid;
+     border: black 1px solid;
+}
+input{
+    font-size: 30px
+}
+
+.buscar{
+    border: #000000;
+    margin-right : 2%;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">  
+    <link href="/bootstrap.css" type="text/css" rel="stylesheet">
+    <title>NUEVO USUARIO</title>
+</head>
+<body>
+    <center>
+        <h1 class="display-1 ">NUEVO USUARIO </h1>
+    </center>
+            <div class="container mt-4">          
+                <div class="card border-secondary">  
+                        <div class="card-header">Editar Registro</div>
+                        <div class="card-body">
+                            <form action="/new_user" method="POST" onsubmit="this.submit(); this.reset(); return false;">
+                                <div class="mb-3">
+                                    <label for="user" class="form-label">NOMBRE APELLIDO</label>
+                                    <input type="text" class="form-control" name="name_user" tabindex="1" required>                        
+                                </div>   
+                                <div class="mb-3">
+                                    <label for="user" class="form-label">CEDULA</label>
+                                    <input type="text" class="form-control" type="number" name="id_user" tabindex="1" required >                        
+                                </div>   
+                                <div class="mb-3">
+                                    <label for="user" class="form-label">CARGO</label>
+                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="cargo" required >
+                                        <option value="operario">OPERARIO</option>
+                                        <option value="supervisor">SUPERVISOR</option>
+                                    </select><br>
+                                </div>   
+                                <div class="mb-3">
+                                    <label for="user" class="form-label">AREA</label>
+                                    <select  class="form-select form-select-lg mb-3" aria-label=".form-select-lg example"name="area1" required >
+                                        <option selected>AREA</option>
+                                        <option value="logistica">LOGISTICA</option>
+                                        <option value="desempaque">DESEMPAQUE</option>
+                                        <option value="pintura">PINTURA</option>
+                                    </select><br>
+                                </div>   
+                                <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                                <a href="javascript:history.go(-1)" class="btn btn-secondary">Cancelar</a>
+                            </form>      
+                        </div>
+                    </div>     
+            </div>
+ 
+</body>
+</html>

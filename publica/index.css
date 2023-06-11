@@ -1,0 +1,21 @@
+
+body.into{
+    text-align: center;
+    background-color: #b2b2b2;
+}
+.div-1{
+    text-align: center;
+}
+.div-2{
+    background: rgb(255, 255, 255);
+    max-width: 35%; 
+    text-align: center;
+    margin: 0 auto;
+}
+select,option.id{
+    text-align: center;
+}
+.boton{
+    margin: 5%;
+    color: rgb(0, 0, 0);
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">  
+    <link href="./stype.css" rel="stylesheet" >
+    <link href="./bootstrap.css" rel="stylesheet" >
+    <title><%= usuar.area %></title>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">BIENVENIDO: <%= usuar.user_nombre %></a>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"><%= usuar.area %></a>
+          </li>
+          <% if(usuar.cargo=="supervisor"){ %>
+            <li class="nav-item dropdown">
+              <a class="nav-link active" href="/nuevousuario">Nuevo usuario</a>
+            </li>
+            <%}%>
+            <li class="nav-item dropdown">
+            <a class="nav-link active" href="/vista" id="navbarScrollingDropdown" role="button">VISTA</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active" href="/" id="navbarScrollingDropdown" role="button"  >SALIR</a>
+          </li>
+        </ul>
+        <input class="buscar" id="search" type="text" placeholder="FACTURA/LOTE" required>
+        <button class="btn btn-outline-success" type="button" onclick="buscar()">BUSCAR</button>
+    </div>
+    </div>
+  </nav>
+  <div class="tab">
+    <div class="col-md-6 mt-4 text-center" >
+        <table class="table table-bordered table-striped text-center mt-4">
+          <thead>
+              <tr class="bg-primary text-white" >
+                  <th scope="col">#ID</th>
+                  <th scope="col">FECHA</th>
+                  <th scope="col">REFERENCIA</th>
+                  <th scope="col">LOTE</th>
+                  <th scope="col">NOMBRE PIEZA</ht>
+                  <th scope="col">MODELO</th>
+                  <th scope="col">RECIBIDO LOGISTICA</th>
+                  <th scope="col">RESPONSABLE</th>
+                  <th scope="col">CANTIDAD ENTREGADA</th>
+                  <th scope="col">RESPOSABLE PINTURA</th>
+                  <th scope="col">CANTIDAD RECIBE PINTURA</th>
+                  <th scope="col">COMENTARIO</th>
+                  <th scope="col">OPCIONES</th>
+              </tr>
+              <tbody id="tbody">
+                <% datos.forEach(function(user){ %>
+                <tr>
+                  <td><%= user.id%></td>
+                  <td><%= user.fecha %></td>
+                  <td><%= user.referencia %></td>
+                  <td><%= user.lote %></td>
+                  <td><%= user.pieza %></td>
+                  <td><%= user.modelo %></td>
+                  <td><%= user.cantidad_recibi_logis %></td>
+                  <td><%= user.entrega_logis %></td>                    
+                  <td><%= user.cantidad_entre_logis %></td> 
+                  <td><%= user.recibe_pint %></td>                    
+                  <td><%= user.cantidad_recibe_pint%>
+                    <form action="/cantidadpint" method="post" >
+                      <input type="text" name="id1" value="<%= user.id%>" hidden>
+                      <input type="text" name="recibe" value="<%= usuar.user_nombre %>" hidden>
+                      <input size="2.5" type="text" name="cantida" required  <%if(user.cantidad_entre_logis==user.cantidad_recibe_pint){%>
+                                                                            hidden
+                                                                          <%}%> >
+                      <input type="submit" hidden> 
+                    </form>
+                  </td>                    
+                  <td><%= user.comentarios %></td> 
+                  <td><a href="/editpint/<%= user.id %>" class="btn btn-outline-info">EDITAR</a></td>                  
+                </tr>
+              <% }); %>
+              </tbody>
+          </thead>
+      </table>
+      </div>
+    </div>
+  <script>
+    function buscar(){
+      let inputext= document.getElementById("search").value.toString().toLowerCase();
+      let tablebody=document.getElementById("tbody");
+    let tablerows=tablebody.getElementsByTagName("tr");
+    for(let i= 0; i < tablerows.length; i++){
+      let textconsulta = tablerows[i].cells[3].textContent.toString().toLowerCase();
+      if (textconsulta.indexOf(inputext)===-1) {
+        tablerows[i].style.visibility="collapse"
+      }
+      else{
+        tablerows[i].style.visibility=""
+      }
+    }
+  };
+
+  </script>
+  </body>
+</html>

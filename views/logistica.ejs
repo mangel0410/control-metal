@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">  
+    <link href="./logistica.css" rel="stylesheet" >
+    <link href="./bootstrap.css" rel="stylesheet" >
+    <script src="./search.js" type="text/javascript"></script>
+    <title><%= usuar.area %></title>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">BIENVENIDO: <%= usuar.user_nombre %></a>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#"><%= usuar.area %></a>
+          </li>
+          <% if(usuar.cargo=="supervisor"){ %>
+          <li class="nav-item dropdown">
+            <a class="nav-link active" href="/nuevousuario">Nuevo usuario</a>
+          </li>
+          <%}%>
+          <li class="nav-item dropdown">
+            <a class="nav-link active" href="/vista" id="navbarScrollingDropdown" role="button">VISTA</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link active" href="/" id="navbarScrollingDropdown" role="button">SALIR</a>
+          </li>
+        </ul>
+          <input class="buscar" id="search" type="text" placeholder="FACTURA/LOTE" required>
+          <button class="btn btn-outline-success" type="button" onclick="buscar()">BUSCAR</button>
+      </div>
+    </div>
+  </nav>
+  
+    <div class="col-md-6 mt-4 text-center" >
+      <div class="container" >
+        <table class="tabla1" >
+          <thead>
+              <tr style="background-color: rgb(0, 164, 240); color: aliceblue; ">
+                  <th scope="col">#ID</th>
+                  <th scope="col">FECHA</th>
+                  <th scope="col" >REFERENCIA</th>
+                  <th scope="col">FACTURA/LOTE</th>
+                  <th scope="col">NOMBRE PIEZA</th>
+                  <th scope="col">MODELO</th>
+                  <th scope="col">RESPONSABLE ENTREGA</th>
+                  <th scope="col">CANTIDAD ENTREGADA</th>
+                  <th scope="col">RECIBIDO LOGISTICA</th>
+                  <th scope="col">CANTIDAD RECIBIDO LOGISTICA</th>
+                  <th scope="col">RESPOSABLE LOGISTICA</th>
+                  <th scope="col">CANTIDAD ENTREGA LOGISTICA</th>
+                  <th scope="col">COMENTARIO</th>
+                  <th scope="col">OPCIONES</th>
+              </tr>
+          </thead>   
+              <tbody id="tbody" >
+                <% datos.forEach(function(user){ %>
+                <tr class="ejem"> 
+                    <td ><%= user.id %></td>
+                    <td ><%= user.fecha %></td>
+                    <td ><%= user.referencia %></td>
+                    <td ><%= user.lote %></td>
+                    <td ><%= user.pieza %></td>
+                    <td ><%= user.modelo %></td>
+                    <td ><%= user.responsable_desem %></td>
+                    <td ><%= user.cantidad_entre_desem %></td>
+                    <td ><%= user.recibe_logis %></td>                    
+                    <td ><%= user.cantidad_recibi_logis%><br>
+                      <form action="/cantidadlogis" method="post" >
+                        <input type="text" name="id1" value="<%= user.id%>" hidden>
+                        <input type="text" name="recibe" value="<%= usuar.user_nombre %>" hidden>
+                        <input size="2.5" type="text" name="cantida" <%if(user.cantidad_recibi_logis==user.cantidad_entre_desem){%>
+                                                                              hidden
+                                                                            <%}%> >
+                        <input type="submit" hidden> 
+                      </form>
+                    </td>
+                    <td ><%= user.entrega_logis %></td>                    
+                    <td ><%= user.cantidad_entre_logis %><br>
+                      <form action="/cantidadentrelogis" method="post" >
+                        <input type="text" name="id1" value="<%= user.id%>" hidden>
+                        <input type="text" name="user_entre" value="<%= usuar.user_nombre %>" hidden>
+                        <input size="2.5" type="text" name="cantida" required <%if(user.cantidad_recibi_logis==user.cantidad_entre_logis){%>
+                                                                              hidden
+                                                                            <%}%> >
+                        <input type="submit" hidden> 
+                      </form>
+                    </td>                    
+                    <td ><%= user.comentarios %></td> 
+                    <td><a href="/editlogis/<%= user.id %>" class="btn bg-primary  btn-outline-info">editar</a></td>                                    
+                </tr>
+              <% }); %>
+              </tbody>
+      </table>
+      </div>
+    </div>
+</body>
+</html>
