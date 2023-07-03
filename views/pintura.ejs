@@ -47,10 +47,10 @@
                   <th scope="col">LOTE</th>
                   <th scope="col">NOMBRE PIEZA</ht>
                   <th scope="col">MODELO</th>
-                  <th scope="col">RECIBIDO LOGISTICA</th>
+                  <th scope="col">RECIBIDO LOGÍSTICA</th>
                   <th scope="col">RESPONSABLE</th>
                   <th scope="col">CANTIDAD ENTREGADA</th>
-                  <th scope="col">RESPOSABLE PINTURA</th>
+                  <th scope="col">RESPONSABLE PINTURA</th>
                   <th scope="col">CANTIDAD RECIBE PINTURA</th>
                   <th scope="col">COMENTARIO</th>
                   <th scope="col">OPCIONES</th>
@@ -87,22 +87,5 @@
       </table>
       </div>
     </div>
-  <script>
-    function buscar(){
-      let inputext= document.getElementById("search").value.toString().toLowerCase();
-      let tablebody=document.getElementById("tbody");
-    let tablerows=tablebody.getElementsByTagName("tr");
-    for(let i= 0; i < tablerows.length; i++){
-      let textconsulta = tablerows[i].cells[3].textContent.toString().toLowerCase();
-      if (textconsulta.indexOf(inputext)===-1) {
-        tablerows[i].style.visibility="collapse"
-      }
-      else{
-        tablerows[i].style.visibility=""
-      }
-    }
-  };
-
-  </script>
   </body>
 </html>

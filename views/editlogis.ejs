@@ -9,7 +9,7 @@
     <title>Metal</title>
   </head>
 <body>
-    <h1>EDITAR PRODUTO : <small class="text-muted"> <%= user.lote+' '+user.pieza %> </small></h1>
+    <h1>EDITAR PRODUCTO : <small class="text-muted"> <%= user.lote+' '+user.pieza %> </small></h1>
 
       <% if (user) { %>
       <div class="container mt-4">          
@@ -19,11 +19,11 @@
                     <form action="/updatelogis" method="POST">
                         <input  type="number" name="id1" value="<%= user.id %>" hidden>
                         <div class="mb-3">
-                          <label for="user" class="form-label">CANTIDA RECIBIDA</label>
+                          <label for="user" class="form-label">CANTIDAD RECIBIDA</label>
                           <input type="text" class="form-control"  name="cantidad_recib" tabindex="1" value="<%= user.cantidad_recibi_logis%>">                        
                         </div>   
                         <div class="mb-3">
-                          <label for="user" class="form-label">CANTIDA ENTREGADA LOGISTICA</label>
+                          <label for="user" class="form-label">CANTIDAD ENTREGADA LOGÍSTICA</label>
                           <input type="text" class="form-control" name="cantida_entr" tabindex="1" value="<%= user.cantidad_entre_logis%>">                        
                         </div>                                                                                       
                         <div class="mb-3">
