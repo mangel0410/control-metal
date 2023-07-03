@@ -277,7 +277,7 @@ exports.cantidadpint=(req,res)=>{
     const cantid = req.body.cantida;
     const recib = req.body.recibe.toString().toLowerCase();
     const idlogist = req.body.id1;
-    const request = new Request("UPDATE entrega_metal SET cantidad_recibi_logis='"+cantid+"', recibe_logis='"+recib+"'  WHERE id='"+idlogist+"' ",
+    const request = new Request("UPDATE entrega_metal SET cantidad_recibi_pint='"+cantid+"', recibe_pint='"+recib+"'  WHERE id='"+idlogist+"' ",
                 function(err,rowCount){
                     if(err){
                         console.error("error al insertar registro:"+ err.message);
