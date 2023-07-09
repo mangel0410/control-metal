@@ -6,7 +6,7 @@ const ocficial=hoy.toLocaleString();
 
 exports.login=(req, res)=>{
     const cedu =req.body.id_usuario;
-    const are= req.body.area1.toString().toLowerCase();
+    const are= req.body.area1.toString().toUpperCase();
     const usuario = [];
     const request = new Request("SELECT cedula, user_nombre, area, cargo FROM usuario WHERE cedula='"+cedu+"' AND area='"+are+"' ", function (err, rowCount, rows) {
         if (err) {
@@ -18,7 +18,7 @@ exports.login=(req, res)=>{
                         });
                     usuario.push(row);
                     });
-                    if (usuario[0].area=="logistica") {
+                    if (usuario[0].area=="LOGISTICA") {
                         excecuteStatement(function (request2) {
                             res.render('logistica.ejs', {
                                 datos:request2,
@@ -26,7 +26,7 @@ exports.login=(req, res)=>{
                             });
                         });
                     }
-                    else if (usuario[0].area=="desempaque") {
+                    else if (usuario[0].area=="DESEMPAQUE") {
                         excecuteStatement(function (request2) {
                             res.render('desempaque.ejs', {
                                 datos:request2,
@@ -34,7 +34,7 @@ exports.login=(req, res)=>{
                             });
                         });
                     }
-                    else if (usuario[0].area=="pintura") {
+                    else if (usuario[0].area=="PINTURA") {
                         excecuteStatement(function (request2) {
                             res.render('pintura.ejs', {
                                 datos:request2,
@@ -85,13 +85,13 @@ function excecuteStatement(callback) {
     };
 
 exports.nuevo=(req,res)=>{
-    const refer = req.body.referen.toString().toLowerCase();
-    const lot = req.body.lote1.toString().toLowerCase();
-    const model = req.body.modelo.toString().toLowerCase();
+    const refer = req.body.referen.toString().toUpperCase();
+    const lot = req.body.lote1.toString().toUpperCase();
+    const model = req.body.modelo.toString().toUpperCase();
     const cantid = req.body.cantidad;
-    const respon = req.body.responsable.toString().toLowerCase();
-    const comen = req.body.comentarios.toString().toLowerCase();
-    const piez = req.body.pieza1.toString().toLowerCase();
+    const respon = req.body.responsable.toString().toUpperCase();
+    const comen = req.body.comentarios.toString().toUpperCase();
+    const piez = req.body.pieza1.toString().toUpperCase();
     const fecha=ocficial
     const request = new Request("INSERT INTO entrega_metal( referencia, lote, pieza, modelo, responsable_desem, cantidad_entre_desem, comentarios, fecha )values('"+refer+"','"+lot+"','"+piez+"','"+model+"','"+respon+"','"+cantid+"','"+comen+"','"+fecha+"')",
         function(err,rowCount){
@@ -166,13 +166,13 @@ exports.editar=(req,res)=>{
 
 exports.update=(req,res)=>{
     const lote_id=req.body.id1
-    const refer = req.body.referen.toString().toLowerCase();
-    const lot = req.body.lote1.toString().toLowerCase();
-    const model = req.body.modelo.toString().toLowerCase();
+    const refer = req.body.referen.toString().toUpperCase();
+    const lot = req.body.lote1.toString().toUpperCase();
+    const model = req.body.modelo.toString().toUpperCase();
     const cantid = req.body.cantidad;
-    const respon = req.body.responsable.toString().toLowerCase();
-    const comen = req.body.comentarios.toString().toLowerCase();
-    const piez = req.body.pieza.toString().toLowerCase();
+    const respon = req.body.responsable.toString().toUpperCase();
+    const comen = req.body.comentarios.toString().toUpperCase();
+    const piez = req.body.pieza.toString().toUpperCase();
     const request = new Request("UPDATE entrega_metal SET referencia='"+refer+"', lote='"+lot+"', pieza='"+piez+"', modelo='"+model+"', responsable_desem='"+respon+"', cantidad_entre_desem='"+cantid+"', comentarios='"+comen+"' WHERE id='"+lote_id+"' ",
                 function(err,rowCount){
                     if(err){
@@ -180,7 +180,7 @@ exports.update=(req,res)=>{
                         res.status(500).send("error al insertar registro");
                     }else{
                         console.log(lote_id,refer,lot,model,cantid,respon,comen,piez)
-                        res.send('<script> window.location.href = "javascript:history.go(-3)"; alert("registros insertado con exito"); </script>');                   
+                        res.send('<script> window.location.href = "javascript:history.go(-2)"; alert("registros insertado con exito"); </script>');                   
                     }
                         });
                         connection.execSql(request);
@@ -190,7 +190,7 @@ exports.updatelogis=(req,res)=>{
     const lote_id=req.body.id1
     const cantidentr = req.body.cantida_entr;
     const cantidrecib = req.body.cantidad_recib;
-    const comen = req.body.comentarios.toString().toLowerCase();
+    const comen = req.body.comentarios.toString().toUpperCase();
     const request = new Request("UPDATE entrega_metal SET cantidad_recibi_logis='"+cantidrecib+"', cantidad_entre_logis='"+cantidentr+"', comentarios='"+comen+"' WHERE id='"+lote_id+"' ",
                 function(err,rowCount){
                     if(err){
@@ -241,7 +241,7 @@ exports.vista=(req, res)=>{
 
 exports.cantidadlogis=(req,res)=>{
     const cantid = req.body.cantida;
-    const recib = req.body.recibe.toString().toLowerCase();
+    const recib = req.body.recibe.toString().toUpperCase();
     const idlogist = req.body.id1;
     const request = new Request("UPDATE entrega_metal SET cantidad_recibi_logis='"+cantid+"', recibe_logis='"+recib+"'  WHERE id='"+idlogist+"' ",
                 function(err,rowCount){
@@ -258,7 +258,7 @@ exports.cantidadlogis=(req,res)=>{
 
 exports.cantidadentrelogis=(req,res)=>{
     const cantid = req.body.cantida;
-    const recib = req.body.user_entre.toString().toLowerCase();
+    const recib = req.body.user_entre.toString().toUpperCase();
     const idlogist = req.body.id1;
     const request = new Request("UPDATE entrega_metal SET cantidad_entre_logis='"+cantid+"', entrega_logis='"+recib+"'  WHERE id='"+idlogist+"' ",
                 function(err,rowCount){
@@ -275,7 +275,7 @@ exports.cantidadentrelogis=(req,res)=>{
 
 exports.cantidadpint=(req,res)=>{
     const cantid = req.body.cantida;
-    const recib = req.body.recibe.toString().toLowerCase();
+    const recib = req.body.recibe.toString().toUpperCase();
     const idlogist = req.body.id1;
     const request = new Request("UPDATE entrega_metal SET cantidad_recibi_pint='"+cantid+"', recibe_pint='"+recib+"'  WHERE id='"+idlogist+"' ",
                 function(err,rowCount){
@@ -293,7 +293,7 @@ exports.cantidadpint=(req,res)=>{
 exports.updatepint=(req,res)=>{
     const lote_id=req.body.id1
     const cantidentr = req.body.cantida_entr;
-    const comen = req.body.comentarios.toString().toLowerCase();
+    const comen = req.body.comentarios.toString().toUpperCase();
     const request = new Request("UPDATE entrega_metal SET cantidad_recibi_pint='"+cantidrecib+"', comentarios='"+comen+"' WHERE id='"+lote_id+"' ",
                 function(err,rowCount){
                     if(err){
@@ -335,10 +335,10 @@ exports.editarpint=(req,res)=>{
         };
 
 exports.newuser=(req,res)=>{
-    const user = req.body.name_user.toString().toLowerCase();
+    const user = req.body.name_user.toString().toUpperCase();
     const dni = req.body.id_user
-    const carg = req.body.cargo.toString().toLowerCase();
-    const are = req.body.area1.toString().toLowerCase();
+    const carg = req.body.cargo.toString().toUpperCase();
+    const are = req.body.area1.toString().toUpperCase();
     const request = new Request("INSERT INTO usuario( cedula, user_nombre, area, cargo)values('"+dni+"','"+user+"','"+are+"','"+carg+"')",
         function(err,rowCount){
             if(err){

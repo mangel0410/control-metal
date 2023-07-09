@@ -7,41 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="icon" href="./img/favicon.ico" type="image/x-icon">  
-    <link href="./bootstrap.css" rel="stylesheet" >
+    <link href="./vista.css" rel="stylesheet" >
     <title>VISTA</title>
 </head>
 <body>
-    <div class="col-md-6 mt-4 text-center" >
         <div class="container" >
-          <table class="tabla1" >
+          <table >
             <thead>
-                <tr style="background-color: rgb(0, 164, 240);">
-                    <th scope="col">#ID</th>
+                <tr class="tr">
+                    <th class="th" scope="col">#ID</th>
                     <th scope="col">FECHA</th>
-                    <th scope="col" >REFERENCIA</th>
+                    <th scope="col">REFERENCIA</th>
                     <th scope="col">LOTE</th>
                     <th scope="col">NOMBRE PIEZA</ht>
                     <th scope="col">MODELO</th>
-                    <th scope="col">RESPONSABLE</th>
-                    <th scope="col">CANTIDAD ENTREGADA</th>
+                    <th scope="col">RESPONSABLE DESEMPAQUE</th>
+                    <th scope="col">CANTIDAD ENTREGADA DESEPAQUE</th>
                     <th scope="col">RESPONSABLE LOGÍSTICA</th>
                     <th scope="col">RECIBIDO LOGÍSTICA</th>
+                    <th scope="col">RESPONSABLE ENTREGA LOGÍSTICA</th>
                     <th scope="col">CANTIDAD ENTREGA LOGÍSTICA</th>
-                    <th scope="col">RESPONSABLE pintura</th>
+                    <th scope="col">RESPONSABLE PINTURA</th>
                     <th scope="col">CANTIDAD RECIBIDA PINTURA</th>
                     <th scope="col">COMENTARIO</th>
                 </tr>
               </thead> 
                 <tbody>
                   <% datos.forEach(function(user){ %>
-                  <tr <%if(user.cantidad_entr_desem=user.cantidad_recibi_logis){%>
-                  style="background-color:rgb(227, 230, 63)";
-                <%}else if(user.cantidad_entr_desem=user.cantidad_recibe_pint){%>
-                  style="background-color:rgb(110, 255, 105)";
-                  <%}else{%>
-                  style="background-color:rgb(236, 98, 98)";
-                <%}%> >
-                    <td ><%= user.id %></td>
+                  <tr class="<%if(user.cantidad_entr_desem = user.cantidad_recibi_pint){%>
+                            completo
+                        <%}else if(user.cantidad_entr_desem = user.cantidad_recibi_logis){%>
+                            medio
+                        <%}else {%>
+                               incompleto
+                      <%}%> 
+                    ">
+                    <td class="td"><%= user.id %></td>
                     <td ><%= user.fecha %></td>
                     <td><%= user.referencia %></td>
                     <td><%= user.lote %></td>
@@ -52,16 +53,14 @@
                     <td><%= user.recibe_logis %></td>                    
                     <td><%= user.cantidad_recibi_logis %></td>                    
                     <td><%= user.entrega_logis %></td>                    
-                    <td><%= user.cantidad_entre_logi %></td>                    
+                    <td><%= user.cantidad_entre_logis %></td>                    
                     <td><%= user.recibe_pint %></td>                    
-                    <td><%= user.cantidad_recibe_pint%></td>                    
+                    <td><%= user.cantidad_recibi_pint%></td>                    
                     <td><%= user.comentarios %></td> 
                 </tr>
                 <% }); %>
                 </tbody>
-              
         </table>
         </div>
-      </div>
   </body>
 </html>
