@@ -12,12 +12,9 @@ app.use(express.static(__dirname+ '/publica'));
 
 app.use('/', require('./router'));
 
-app.use('/vista', require('./router'));
 
-app.use('/nuevousuario', require('./router'));
-
-app.listen(port, ()=>{
-    console.log("servidor escuchando por el puerto", port)
+app.listen(80, ()=>{
+    console.log("servidor escuchando por el puerto", 80)
   
 });
 module.exports=app

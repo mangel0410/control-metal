@@ -1,15 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const crud= require('./controllers/crud.js');
+const crud= require('./controllers/crud');
 
 
-router.get('/', (req, res)=>{ 
+router.get('/controlmetal', (req, res)=>{ 
     res.render('index')
 });
 
-router.get('/login', (req, res)=>{ 
-    res.send('<script> window.location.href = "javascript:document.location.reload(history.go(0)) "</script>');                   
-});
 
 router.get('/nuevousuario',(req,res)=>{
     res.render('nuevo_usuario')

@@ -1,3 +1,4 @@
+setInterval("location.reload(false)", 10000);
 function buscar() { 
     let inputext= document.getElementById("search").value.toString().toLowerCase();
     let tablebody=document.getElementById("tbody");

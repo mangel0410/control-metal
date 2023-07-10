@@ -43,7 +43,7 @@ exports.login=(req, res)=>{
                         });
                     }
                } 
-               else{res.send('<script> window.location.href = "/"; alert("USUARIO INCORRETO"); </script>');                   
+               else{res.send('<script> window.location.href = "/controlmetal"; alert("USUARIO INCORRETO"); </script>');                   
             }
             });
             request.on('row',function(columns){
@@ -249,7 +249,7 @@ exports.cantidadlogis=(req,res)=>{
                         console.error("error al insertar registro:"+ err.message);
                         res.status(500).send("error al insertar registro");
                     }else{
-                        res.send('<script> window.location.href = "javascript:document.location.reload(history.go(-1)) "; alert("cantida cargada"); </script>');                   
+                        res.send('<script> history.back(-3) </script>');                   
                     }
                         });
                         connection.execSql(request);
