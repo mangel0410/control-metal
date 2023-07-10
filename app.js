@@ -13,8 +13,8 @@ app.use(express.static(__dirname+ '/publica'));
 app.use('/', require('./router'));
 
 
-app.listen(80, ()=>{
-    console.log("servidor escuchando por el puerto", 80)
+app.listen(port, ()=>{
+    console.log("servidor escuchando por el puerto", port)
   
 });
 module.exports=app
